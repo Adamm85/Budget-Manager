@@ -1,5 +1,10 @@
 package BudgetManager;
 
-public class budgetFrame {
+import javax.swing.JFrame;
 
+public class budgetFrame extends JFrame{
+
+	public budgetFrame() {
+		
+	}
 }
