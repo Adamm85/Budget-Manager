@@ -11,7 +11,12 @@ public class dbConnection {
 	static private Statement statement;
 	static private ResultSet resultset;
 	
-	public static Connection dbConn() {
+	public static void dbConn() throws SQLException {
+		conn();
+		statement();
+	}
+	
+	public static Connection conn() {
 		try {
 			DriverManager.registerDriver(new org.postgresql.Driver());
 			conn = DriverManager.getConnection(urlDatabase, user , pass);

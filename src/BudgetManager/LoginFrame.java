@@ -27,7 +27,7 @@ public class LoginFrame implements ActionListener {
 	JButton loginButton, cancelLoginButton;
 	private Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 	private TitledBorder title;
-	JFrame loginWindow;
+	static JFrame loginWindow;
 	
 	public LoginFrame(){
 		initComponents();
@@ -83,8 +83,13 @@ public class LoginFrame implements ActionListener {
 		return loginTF.getText();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static String getPassword() {
 		return passwordTF.getText();
+	}
+	
+	public static JFrame loginFrame() {
+		return loginWindow;
 	}
 	
 	@Override
@@ -94,7 +99,10 @@ public class LoginFrame implements ActionListener {
 			Logger logger = new Logger();
 			try {
 				logger.checkLogIn();
-			} catch (NoSuchAlgorithmException | SQLException | NullPointerException e) {
+			} catch (SQLException | NullPointerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			

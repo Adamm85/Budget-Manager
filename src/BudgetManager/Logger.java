@@ -12,16 +12,24 @@ public class Logger {
 	private static String loggerQuery;
 	private static String checkLogin;
 	
-	public void checkLogIn() throws SQLException, NoSuchAlgorithmException {
-		login = LoginFrame.getLogin();
-		password = MD5Coding.md5(LoginFrame.getPassword());
-		loggerQuery = "select '" + login + "' from \"User\" where password='" + password + "';";
+	public String login() {
+		return login = LoginFrame.getLogin();
+	}
+	
+	public String pass() throws NoSuchAlgorithmException {
+		return password = MD5Coding.md5(LoginFrame.getPassword());
+	}
+	
+	public String loggerQuery() throws NoSuchAlgorithmException {
+		return loggerQuery = "select '" + login() + "' from \"User\" where password='" + pass() + "';";
+	}
+	
+	public void checkLogIn() throws SQLException, NoSuchAlgorithmException {		
 		dbConnection.dbConn();
-		dbConnection.statement();
-		System.out.println(loggerQuery);
-		checkLogin = dbConnection.resultsetUser(loggerQuery);
+		checkLogin = dbConnection.resultsetUser(loggerQuery());
 	    if(login.equals(checkLogin) && !login.equals("")) {
-			BudgetFrame.createAndShowGUI();
+			LoginFrame.loginWindow.dispose();
+	    	BudgetFrame.createAndShowGUI();
 		}else {
 			JOptionPane.showMessageDialog(null, "Wrong Login or Password");
 		}
