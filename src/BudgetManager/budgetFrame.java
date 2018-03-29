@@ -21,7 +21,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class budgetFrame extends JPanel{
+public class BudgetFrame extends JPanel{
 
 	
 	private boolean DEBUG = false;
@@ -33,7 +33,7 @@ public class budgetFrame extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	budgetFrame(){
+	BudgetFrame(){
 		super(new FlowLayout());
 
 		JTable tableCost = new JTable();
@@ -85,7 +85,7 @@ public class budgetFrame extends JPanel{
 		
 		frame.setJMenuBar(menuBar);
 		
-		budgetFrame newContentPane = new budgetFrame();
+		BudgetFrame newContentPane = new BudgetFrame();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		newContentPane.setPreferredSize(new Dimension(600, 600));

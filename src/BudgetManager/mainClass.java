@@ -1,9 +1,16 @@
 package BudgetManager;
 
-public class mainClass {
+import java.sql.SQLException;
 
-	public static void main(String[] args) {
-		budgetFrame.createAndShowGUI();
-
+public class MainClass {
+	
+	static private String query = "select * from \"Budget\";";
+	
+	public static void main(String[] args) throws SQLException {
+		
+		dbConnection.dbConn();
+		dbConnection.statement();
+		dbConnection.resultset(query);
+		LoginFrame loginWindow = new LoginFrame();
 	}
 }

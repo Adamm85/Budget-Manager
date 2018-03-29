@@ -1,8 +1,8 @@
 package BudgetManager;
 
-public class calculation extends cost{
+public class Calculation extends Cost{
 	
-	public calculation() {
+	public Calculation() {
 		
 	}
 	

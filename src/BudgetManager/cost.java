@@ -2,17 +2,17 @@ package BudgetManager;
 
 import javax.xml.crypto.Data;
 
-public class cost {
+public class Cost {
 	
 	int cost;
 	String description;
 	Data data;
 	
-	public cost() {
+	public Cost() {
 		
 	}
 	
-	public cost(int newCost, String newDescription, Data newData) {
+	public Cost(int newCost, String newDescription, Data newData) {
 		newCost = cost;
 		newDescription = description;
 		newData = data;
