@@ -5,6 +5,9 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import BudgetManager.View.BudgetFrame;
+import BudgetManager.View.LoginFrame;
+
 public class Logger {
 
 	private static String login;
@@ -17,19 +20,22 @@ public class Logger {
 	}
 	
 	public String pass() throws NoSuchAlgorithmException {
-		return password = MD5Coding.md5(LoginFrame.getPassword());
+		password = MD5Coding.md5(LoginFrame.getPassword());
+		return password;
 	}
 	
 	public String loggerQuery() throws NoSuchAlgorithmException {
-		return loggerQuery = "select '" + login() + "' from \"User\" where password='" + pass() + "';";
+		loggerQuery = "select '" + login() + "' from \"User\" where password='" + pass() + "';";
+		return loggerQuery;
 	}
 	
 	public void checkLogIn() throws SQLException, NoSuchAlgorithmException {		
 		dbConnection.dbConn();
 		checkLogin = dbConnection.resultsetUser(loggerQuery());
 	    if(login.equals(checkLogin) && !login.equals("")) {
-			LoginFrame.loginWindow.dispose();
-	    	BudgetFrame.createAndShowGUI();
+			BudgetManager.View.LoginFrame.loginWindow.dispose();
+	    	BudgetFrame budgetframe = new BudgetFrame();
+			budgetframe.createAndShowGUI();
 		}else {
 			JOptionPane.showMessageDialog(null, "Wrong Login or Password");
 		}

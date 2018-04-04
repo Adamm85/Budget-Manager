@@ -1,4 +1,4 @@
-package BudgetManager;
+package BudgetManager.View;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -18,6 +18,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import BudgetManager.Logger;
+
 public class LoginFrame implements ActionListener {
 
 	private JPanel mainPanelLogin, topPanelLogin, downPanelLogin;
@@ -27,14 +29,12 @@ public class LoginFrame implements ActionListener {
 	JButton loginButton, cancelLoginButton;
 	private Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 	private TitledBorder title;
-	static JFrame loginWindow;
+	public static JFrame loginWindow;
 	
-	public LoginFrame(){
-		initComponents();
-		listeners();
-	}
 	public void initComponents() {
 		loginWindow = new JFrame("Logger");
+		loginWindow.setResizable(false);
+		loginWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanelLogin = new JPanel();
 		loginWindow.add(mainPanelLogin);
 		topPanelLogin = new JPanel();
@@ -70,6 +70,7 @@ public class LoginFrame implements ActionListener {
 		downPanelLogin.add(loginButton);
 		downPanelLogin.add(cancelLoginButton);
 		
+		listeners();
 		loginWindow.pack();
 		loginWindow.setVisible(true);
 	}

@@ -1,11 +1,12 @@
-package BudgetManager;
+package BudgetManager.View;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,25 +22,27 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class BudgetFrame extends JPanel{
+public class BudgetFrame extends JPanel implements ActionListener{
 
 	
 	private boolean DEBUG = false;
+	
 	private static Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 	private static TitledBorder title;
-		
+	private static JButton buttonAddCost, buttonExit, options, showBudgets;
+	private static JFrame frame;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	BudgetFrame(){
+	public BudgetFrame(){
 		super(new FlowLayout());
 
 		JTable tableCost = new JTable();
 		tableCost.setModel(new DefaultTableModel(
 				new Object [][] {},
-				new String [] { "Id", "Cost name", "Date", "Budget", "Free amount"}));
+				new String [] { "Id", "Cost name", "Date", "Budget", "Amount"}));
 		tableCost.setPreferredScrollableViewportSize(new Dimension(580,480));
 		tableCost.setFillsViewportHeight(true);
 		
@@ -70,8 +73,8 @@ public class BudgetFrame extends JPanel{
 		}
 	}
 	
-	public static void createAndShowGUI() {
-		JFrame frame = new JFrame("Budget Manager");
+	public  void createAndShowGUI() {
+		frame = new JFrame("Budget Manager");
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -100,7 +103,7 @@ public class BudgetFrame extends JPanel{
 		
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new GridLayout(1,0));
-		JButton buttonAddCost = new JButton("New Cost");
+		buttonAddCost = new JButton("New Cost");
 		buttonAddCost.setPreferredSize(new Dimension(145,40));
 		downPanel.add(leftPanel);
 		leftPanel.add(buttonAddCost);
@@ -112,9 +115,9 @@ public class BudgetFrame extends JPanel{
 		
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new GridLayout(1,0));
-		JButton buttonExit = new JButton("Exit");
-		JButton options = new JButton("Options");
-		JButton showBudgets = new JButton("Budget Manager");
+		buttonExit = new JButton("Exit");
+		options = new JButton("Options");
+		showBudgets = new JButton("Budget Manager");
 		downPanel.add(rightPanel);
 		showBudgets.setPreferredSize(new Dimension(145,40));
 		buttonExit.setPreferredSize(new Dimension(120,40));
@@ -123,7 +126,35 @@ public class BudgetFrame extends JPanel{
 		rightPanel.add(options);
 		rightPanel.add(buttonExit);	
 		
+		listeners();
 		frame.pack();
 		frame.setVisible(true);				
+	}
+	
+	public void listeners() {
+		buttonAddCost.addActionListener(this);
+		showBudgets.addActionListener(this);		
+		options.addActionListener(this);
+		buttonExit.addActionListener(this);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		Object source = ae.getSource();
+		if(source == buttonAddCost) {
+			NewCostFrame ncf = new NewCostFrame();
+			ncf.CreateAndShowNewCost();
+			frame.dispose();
+		}
+		if(source == showBudgets) {
+			
+		}
+		if(source == options) {
+			//OptionsFrame.CreateAndShowOptions();
+			frame.dispose();
+		}
+		if(source == buttonExit) {
+			frame.dispose();
+		}
 	}
 }

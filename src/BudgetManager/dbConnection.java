@@ -46,7 +46,6 @@ public class dbConnection {
 		resultset = statement.executeQuery(query);
 		if(resultset.next()) {
 			login = resultset.getString(1);
-			System.out.println("login " + login);
 		}
 		resultset.close();
 		statement.close();
